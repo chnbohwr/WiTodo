@@ -10,10 +10,10 @@ const todos = [
 
 ]
 module.exports.getTodo = (event, context, callback) => {
-  const todo = enent.body.todo;
+  //const todo = event.body.todo;
   const response = {
     statusCode: 200,
-    body: JSON.stringify(todos);
+    body: JSON.stringify(todos)
   };
 
   callback(null, response);

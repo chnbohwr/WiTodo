@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports.addTodo = (event, context, callback) => {
-  const todo = enent.body.todo;
+  //const todo = event.body.todo;
   const response = {
     statusCode: 200
   };
