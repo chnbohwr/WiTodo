@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sls offline start",
-    "deploy": "rm -rf node_modules/ && npm install --production && sls deploy"
+    "deploy": "serverless deploy",
+    "offline":"serverless offline"
   },
   "author": "",
   "license": "ISC",
