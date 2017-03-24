@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports.update = (event, context, callback) => {
+exports.update = (event, context, callback) => {
 
+  const response = {
+    statusCode: 200
+  };
   
+  callback(null, response); 
 };
