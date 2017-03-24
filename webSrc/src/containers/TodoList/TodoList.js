@@ -17,11 +17,14 @@ export default class TodoList extends Component {
   static propTypes = {
     todoList: PropTypes.shape,
     addTodo: PropTypes.func,
+    editTodo: PropTypes.func,
     removeTodo: PropTypes.func,
+    changeEditStatus: PropTypes.func,
+    changeEditText: PropTypes.func,
   }
 
   render() {
-    const { todoList, addTodo, removeTodo } = this.props;
+    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText } = this.props;
 
     return (
       <div>
@@ -30,6 +33,9 @@ export default class TodoList extends Component {
         />
         <TodoTable
           todos={todoList}
+          handleEditTodo={editTodo}
+          handleChangeEditStatus={changeEditStatus}
+          handleChangeEditText={changeEditText}
           handleRemoveTodo={removeTodo}
         />
       </div>

@@ -1,14 +1,23 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Input } from 'reactstrap';
 
 export default class TodoTable extends Component {
   static propTypes = {
     todos: PropTypes.shape,
+    handleEditTodo: PropTypes.func,
     handleRemoveTodo: PropTypes.func,
+    handleChangeEditStatus: PropTypes.func,
+    handleChangeEditText: PropTypes.func,
+  }
+
+  changeToEditTodo = (idx) => {
+    this.setState({
+
+    });
   }
 
   render() {
-    const { todos, handleRemoveTodo } = this.props;
+    const { todos, handleRemoveTodo, handleChangeEditStatus, handleChangeEditText, handleEditTodo } = this.props;
 
     return (
       <Table bordered>
@@ -25,14 +34,30 @@ export default class TodoTable extends Component {
               <td className="text-center">
                 {idx + 1}
               </td>
-              <td>
-                {todo.text}
-              </td>
-              <td className="text-center">
-                <Button type="button" color="warning">Edit</Button>
-                {' '}
-                <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.id)}>Remove</Button>
-              </td>
+              {
+                todo.isEdit
+                ? (<td>
+                  <Input
+                    type="text"
+                    onChange={e => handleChangeEditText({index: idx, text: e.target.value})}
+                    value={todo.editText}
+                  />
+                </td>)
+                : <td>{todo.text}</td>
+              }
+              {
+                todo.isEdit
+                ? (<td className="text-center">
+                  <Button type="button" color="success" onClick={() => handleEditTodo(idx)}>OK</Button>
+                  {' '}
+                  <Button type="button" color="danger" onClick={() => handleChangeEditStatus(idx)}>X</Button>
+                </td>)
+                : (<td className="text-center">
+                  <Button type="button" color="warning" onClick={() => handleChangeEditStatus(idx)}>Edit</Button>
+                  {' '}
+                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.id)}>Remove</Button>
+                </td>)
+              }
             </tr>)
           )}
         </tbody>
