@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { todoListActions } from 'redux_flow/actions/';
 
+import QueryTodo from './components/QueryTodo';
 import AddTodo from './components/AddTodo';
 import TodoTable from './components/TodoTable';
 
@@ -21,13 +22,17 @@ export default class TodoList extends Component {
     removeTodo: PropTypes.func,
     changeEditStatus: PropTypes.func,
     changeEditText: PropTypes.func,
+    queryTodo: PropTypes.func,
   }
 
   render() {
-    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText } = this.props;
+    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText, queryTodo } = this.props;
 
     return (
       <div>
+        <QueryTodo
+          handleQueryTodo={queryTodo}
+        />
         <AddTodo
           handleAddTodo={addTodo}
         />

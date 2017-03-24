@@ -41,6 +41,6 @@ export default handleActions({
   ]),
 
   [types.QUERY_TODO]: (state, { payload }) => ([
-    ...payload.list
+    ...state.filter(todo => todo.text.indexOf(payload) !== -1)
   ]),
 }, initialState);
