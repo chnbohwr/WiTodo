@@ -1,0 +1,44 @@
+service: wi-todo
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  memorySize: 1024
+
+plugins:
+  - serverless-offline
+  
+functions:
+  create:
+    handler: src/todoList/create.create
+    events:
+      - http:
+          path: todoList/create
+          method: get
+          cors: true
+
+  update:
+    handler: src/todoList/update.update
+    events:
+      - http:
+          path: todoList/update
+          method: get
+          cors: true
+  
+  delete:
+    handler: src/todoList/delete.delete
+    events:
+      - http:
+          path: todoList/delete
+          method: get
+          cors: true
+
+  list:
+    handler: src/todoList/list.list
+    events:
+      - http:
+          path: todoList/list
+          method: get
+          cors: true
