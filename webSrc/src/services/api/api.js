@@ -10,11 +10,10 @@ import 'isomorphic-fetch';
 import client from './callApi';
 
 /* api modules */
-// const getUserData = (data) => client.post('/getUserData', { data });
 
-// Test
-export const testApi = () => fetch('https://bbandydd.github.io/React_Redux_Todolist/initial.json').then(response => response.json());
+// todoList
+export const getTodoList = () => client.get('todoList/list');
 
 export const webApi = {
-  // getUserData
+  getTodoList
 };
