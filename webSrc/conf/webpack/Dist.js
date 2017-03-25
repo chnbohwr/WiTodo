@@ -21,7 +21,12 @@ class WebpackDistConfig extends WebpackBaseConfig {
           NODE_ENV: 'production'
         }),
         new webpack.optimize.AggressiveMergingPlugin(),
-        //new webpack.NoErrorsPlugin()
+        //new webpack.NoErrorsPlugin(),
+        new webpack.EnvironmentPlugin({
+          NODE_ENV: 'development',
+          APIHOST: 'p32yfvgcdc.execute-api.us-east-1.amazonaws.com/dev',
+          APIPORT: '8080'
+        }),
       ]
     };
 
