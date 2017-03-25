@@ -4,11 +4,12 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 
 provider:
   name: aws
-  runtime: nodejs4.3
-  memorySize: 1024
+  runtime: nodejs6.10
+  memorySize: 128
 
 plugins:
   - serverless-offline
+  - serverless-plugin-include-dependencies
   
 functions:
   create:
@@ -16,7 +17,7 @@ functions:
     events:
       - http:
           path: todoList/create
-          method: get
+          method: post
           cors: true
 
   update:
@@ -24,7 +25,7 @@ functions:
     events:
       - http:
           path: todoList/update
-          method: get
+          method: put
           cors: true
   
   delete:
@@ -32,7 +33,7 @@ functions:
     events:
       - http:
           path: todoList/delete
-          method: get
+          method: delete
           cors: true
 
   list:
