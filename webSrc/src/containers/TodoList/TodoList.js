@@ -22,22 +22,35 @@ export default class TodoList extends Component {
     removeTodo: PropTypes.func,
     changeEditStatus: PropTypes.func,
     changeEditText: PropTypes.func,
-    queryTodo: PropTypes.func,
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      query: '',
+    };
+  }
+
+  queryTodo = (query) => {
+    this.setState({
+      query
+    });
   }
 
   render() {
-    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText, queryTodo } = this.props;
+    const { query } = this.state;
+    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText } = this.props;
 
     return (
       <div>
         <QueryTodo
-          handleQueryTodo={queryTodo}
+          handleQueryTodo={this.queryTodo}
         />
         <AddTodo
           handleAddTodo={addTodo}
         />
         <TodoTable
-          todos={todoList}
+          todos={todoList.filter(todo => todo.text.indexOf(query) !== -1)}
           handleEditTodo={editTodo}
           handleChangeEditStatus={changeEditStatus}
           handleChangeEditText={changeEditText}

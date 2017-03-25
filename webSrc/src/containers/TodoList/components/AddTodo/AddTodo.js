@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
-import fetch from 'isomorphic-fetch';
 
 export default class AddTodo extends Component {
   static propTypes = {

@@ -39,8 +39,4 @@ export default handleActions({
   [types.REMOVE_TODO]: (state, { payload }) => ([
     ...state.filter(todo => todo.id !== payload)
   ]),
-
-  [types.QUERY_TODO]: (state, { payload }) => ([
-    ...state.filter(todo => todo.text.indexOf(payload) !== -1)
-  ]),
 }, initialState);

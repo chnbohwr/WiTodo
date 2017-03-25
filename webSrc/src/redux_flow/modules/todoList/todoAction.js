@@ -7,5 +7,4 @@ export default {
   changeEditStatus: createAction(types.CHANGE_EDIT_STATUS),
   changeEditText: createAction(types.CHANGE_EDIT_TEXT),
   removeTodo: createAction(types.REMOVE_TODO),
-  queryTodo: createAction(types.QUERY_TODO),
 };
