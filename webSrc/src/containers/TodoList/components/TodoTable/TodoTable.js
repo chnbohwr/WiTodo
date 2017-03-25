@@ -30,7 +30,7 @@ export default class TodoTable extends Component {
         </thead>
         <tbody>
           { todos.map((todo, idx) => (
-            <tr key={`todo_${idx}`}>
+            <tr key={`todo_${todo.todoId}`}>
               <td className="text-center">
                 {idx + 1}
               </td>
@@ -43,7 +43,7 @@ export default class TodoTable extends Component {
                     value={todo.editText}
                   />
                 </td>)
-                : <td>{todo.text}</td>
+                : <td>{todo.todo}</td>
               }
               {
                 todo.isEdit
@@ -55,7 +55,7 @@ export default class TodoTable extends Component {
                 : (<td className="text-center">
                   <Button type="button" color="warning" onClick={() => handleChangeEditStatus(idx)}>Edit</Button>
                   {' '}
-                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.id)}>Remove</Button>
+                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.todoId)}>Remove</Button>
                 </td>)
               }
             </tr>)

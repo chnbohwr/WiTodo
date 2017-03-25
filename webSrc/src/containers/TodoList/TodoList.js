@@ -17,6 +17,7 @@ import TodoTable from './components/TodoTable';
 export default class TodoList extends Component {
   static propTypes = {
     todoList: PropTypes.shape,
+    getTodo: PropTypes.func,
     addTodo: PropTypes.func,
     editTodo: PropTypes.func,
     removeTodo: PropTypes.func,
@@ -29,6 +30,11 @@ export default class TodoList extends Component {
     this.state = {
       query: '',
     };
+  }
+
+  componentDidMount() {
+    const { getTodo } = this.props;
+    getTodo();
   }
 
   queryTodo = (query) => {
@@ -50,7 +56,7 @@ export default class TodoList extends Component {
           handleAddTodo={addTodo}
         />
         <TodoTable
-          todos={todoList.filter(todo => todo.text.indexOf(query) !== -1)}
+          todos={todoList.filter(todo => todo.todo.indexOf(query) !== -1)}
           handleEditTodo={editTodo}
           handleChangeEditStatus={changeEditStatus}
           handleChangeEditText={changeEditText}

@@ -15,7 +15,7 @@ export default class AddTodo extends Component {
 
   addTodo = (text) => {
     const { handleAddTodo } = this.props;
-    handleAddTodo({ id: new Date().getTime(), text, isEdit: false, editText: '', });
+    handleAddTodo({ todoId: new Date().getTime(), todo: text, isEdit: false, editText: '', });
 
     this.setState({
       text: '',

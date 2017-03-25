@@ -4,16 +4,22 @@ import types from './todoConstant';
 const initialState = [];
 
 export default handleActions({
+  [types.GET_TODO_SUCCESS]: (state, { payload }) => payload.map(todo => ({
+    todoId: todo.todoId,
+    todo: todo.todo,
+    isEdit: false,
+    editText: '',
+  })),
   [types.ADD_TODO]: (state, { payload }) => ([
     ...state,
-    { id: payload.id, text: payload.text, isEdit: payload.isEdit, editText: payload.editText, }
+    { ...payload },
   ]),
 
   [types.EDIT_TODO]: (state, { payload }) => ([
     ...state.slice(0, payload),
     {
       ...state[payload],
-      text: state[payload].editText,
+      todo: state[payload].editText,
       isEdit: false,
     },
     ...state.slice(payload + 1),
@@ -23,7 +29,7 @@ export default handleActions({
     {
       ...state[payload],
       isEdit: !state[payload].isEdit,
-      editText: state[payload].text,
+      editText: state[payload].todo,
     },
     ...state.slice(payload + 1),
   ]),
@@ -37,6 +43,6 @@ export default handleActions({
   ]),
 
   [types.REMOVE_TODO]: (state, { payload }) => ([
-    ...state.filter(todo => todo.id !== payload)
+    ...state.filter(todo => todo.todoId !== payload)
   ]),
 }, initialState);

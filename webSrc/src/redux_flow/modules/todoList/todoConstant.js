@@ -6,4 +6,6 @@ export default keyMirror({
   CHANGE_EDIT_STATUS: null,
   CHANGE_EDIT_TEXT: null,
   REMOVE_TODO: null,
+  GET_TODO: null,
+  GET_TODO_SUCCESS: null,
 });

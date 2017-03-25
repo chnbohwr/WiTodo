@@ -38,11 +38,12 @@ async function callApi(endpoint, params = {}, method) {
         return Promise.reject(json);
       }
 
-      return Object.assign({}, params.schema
-        ? normalize(json.data, params.schema)
-        : json);
+      return json;
+      // return Object.assign({}, params.schema
+      //   ? normalize(json.data, params.schema)
+      //   : json);
     })
-    .then(response => ({response}), error => ({
+    .then(response => response, error => ({
       error: error.message || 'Something bad happened.'
     }));
 }
