@@ -17,7 +17,7 @@ class WebpackBaseConfig {
     return this._config;
   }
   get env() {
-    return 'dev';
+    return 'development';
   }
   get srcPathAbsolute() {
     return path.resolve('./src');

@@ -25,7 +25,6 @@ class WebpackDistConfig extends WebpackBaseConfig {
         new webpack.EnvironmentPlugin({
           NODE_ENV: 'development',
           APIHOST: 'p32yfvgcdc.execute-api.us-east-1.amazonaws.com/dev',
-          APIPORT: '8080'
         }),
       ]
     };
