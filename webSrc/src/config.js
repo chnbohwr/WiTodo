@@ -1,14 +1,7 @@
 require('babel-polyfill');
 
-const environment = {
-  development: {
-    isProduction: false
-  },
-  production: {
-    isProduction: true
-  }
-}[process.env.NODE_ENV || 'development'];
 module.exports = Object.assign({
+  environment: process.env.NODE_ENV,
   version: require('../package.json').version,
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
@@ -40,4 +33,4 @@ module.exports = Object.assign({
       ]
     }
   },
-}, environment);
+});

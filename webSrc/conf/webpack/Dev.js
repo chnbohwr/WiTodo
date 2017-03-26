@@ -24,8 +24,8 @@ class WebpackDevConfig extends WebpackBaseConfig {
         //new webpack.NoErrorsPlugin(),
         new webpack.EnvironmentPlugin({
           NODE_ENV: 'development',
-          APIHOST: 'ney73tbpg9.execute-api.us-east-1.amazonaws.com/dev',
-          APIPORT: '8080'
+          APIHOST: 'localhost',
+          APIPORT: '3000',
         }),
       ]
     };
