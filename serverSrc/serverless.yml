@@ -13,7 +13,7 @@ plugins:
   
 functions:
   create:
-    handler: src/todoList/create.create
+    handler: src/api/todoList/create.create
     events:
       - http:
           path: todoList/create
@@ -21,7 +21,7 @@ functions:
           cors: true
 
   update:
-    handler: src/todoList/update.update
+    handler: src/api/todoList/update.update
     events:
       - http:
           path: todoList/update
@@ -29,7 +29,7 @@ functions:
           cors: true
   
   delete:
-    handler: src/todoList/delete.delete
+    handler: src/api/todoList/delete.delete
     events:
       - http:
           path: todoList/delete
@@ -37,7 +37,7 @@ functions:
           cors: true
 
   list:
-    handler: src/todoList/list.list
+    handler: src/api/todoList/list.list
     events:
       - http:
           path: todoList/list
