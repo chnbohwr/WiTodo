@@ -7,7 +7,7 @@
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./dist && copyfiles -u 1 \"./src/static/**\" ./dist",
     "dist": "npm run clean && npm run copy && webpack --progress --bail --env dist -p",
-    "deploy": "npm run dist && aws s3 sync dist/ s3://witodo-web",
+    "deploy": "npm run dist && serverless client deploy",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "serve:dev": "webpack-dev-server --open --env dev",
@@ -95,7 +95,7 @@
     "redux-actions": "^2.0.1",
     "redux-react-i18n": "^1.0.1",
     "redux-saga": "^0.14.3",
-    "serverless-client-s3": "^2.0.0",
+    "serverless-client-s3": "git+https://github.com/bbandydd/serverless-client-s3.git",
     "video.js": "^5.18.4",
     "webpack": "^2.1.0-beta.6"
   }
