@@ -37,8 +37,4 @@ export default handleActions({
     },
     ...state.slice(payload.index + 1),
   ]),
-
-  [types.REMOVE_TODO]: (state, { payload }) => ([
-    ...state.filter(todo => todo.todo_id !== payload)
-  ]),
 }, initialState);

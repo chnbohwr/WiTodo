@@ -56,7 +56,7 @@ export default class TodoTable extends Component {
                 : (<td className="text-center">
                   <Button type="button" color="warning" onClick={() => handleChangeEditStatus(idx)}>Edit</Button>
                   {' '}
-                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.todoId)}>Remove</Button>
+                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.todo_id)}>Remove</Button>
                 </td>)
               }
             </tr>)

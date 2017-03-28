@@ -22,7 +22,16 @@ function* watchAddTodo() {
   }
 }
 
+function* watchDeleteTodo() {
+  while (x === 0) {
+    const todo = yield take(types.REMOVE_TODO);
+    const data = yield call(webApi.deleteTodo, todo.payload);
+    yield put(todoAction.getTodo());
+  }
+}
+
 export default [
   fork(watchGetTodoList),
   fork(watchAddTodo),
+  fork(watchDeleteTodo),
 ];
