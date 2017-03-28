@@ -1,17 +1,30 @@
 'use strict';
-const Response = require('../../Response');
+const promise = require('bluebird'); 
 
-const todos = [
-  {
-    todoId: 0,
-    todo: '制定API'
-  }, {
-    todoId: 1,
-    todo: 'serverless 初始架構'
-  }
-];
+const options = {
+    promiseLib: promise // overriding the default (ES6 Promise);
+};
+
+const pgp = require('pg-promise')(options);
+
+const Response = require('../../Response');
+const cn = require('../../../config');
 
 exports.list = (event, context, callback) => {
+  //const bodyData = JSON.parse(event.body);
+  
+  const userId = 1; //bodyData.userId;
 
-  callback(null, new Response(200, todos));
+  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database); 
+
+  db.any('SELECT * FROM todo_list WHERE user_id = $1', [userId])
+    .then(data => {
+        callback(null, new Response(200, data));
+    })
+    .catch(error => {
+        callback(error); 
+    })
+    .finally(() => {
+        pgp.end(); 
+    });  
 };
