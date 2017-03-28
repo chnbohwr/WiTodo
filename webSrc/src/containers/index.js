@@ -17,7 +17,6 @@ import configureStore from 'redux_flow/store';
 import initialLocale from 'locale/';
 // import relative path
 import App from './App';
-import Home from './Home';
 import NotFound from './NotFound';
 import TodoList from './TodoList';
 

@@ -4,12 +4,13 @@ import { webApi } from '../../../services/api';
 import todoAction from './todoAction';
 import types from './todoConstant';
 
+const x = 0;
 
 function* watchGetTodoList() {
-  while (true) {
+  while (x === 0) {
     yield take(types.GET_TODO);
     const data = yield call(webApi.getTodoList);
-    yield put(todoAction.getTodoSuccess(data));
+    yield put(todoAction.getTodoSuccess(data.error ? [] : data));
   }
 }
 

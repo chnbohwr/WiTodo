@@ -1,5 +1,4 @@
 import 'isomorphic-fetch';
-import { normalize } from 'normalizr';
 import mapUrl from '../utils/url';
 
 // deal with params, because not all property named 'data'...
