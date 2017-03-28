@@ -10,13 +10,6 @@ export default class TodoTable extends Component {
     handleChangeEditText: PropTypes.func,
   }
 
-  changeToEditTodo = (idx) => {
-    console.log(idx);
-    this.setState({
-
-    });
-  }
-
   render() {
     const { todos, handleRemoveTodo, handleChangeEditStatus, handleChangeEditText, handleEditTodo } = this.props;
 
@@ -31,7 +24,7 @@ export default class TodoTable extends Component {
         </thead>
         <tbody>
           { todos.map((todo, idx) => (
-            <tr key={`todo_${todo.todoId}`}>
+            <tr key={`todo_${todo.todo_id}`}>
               <td className="text-center">
                 {idx + 1}
               </td>
@@ -49,14 +42,14 @@ export default class TodoTable extends Component {
               {
                 todo.isEdit
                 ? (<td className="text-center">
-                  <Button type="button" color="success" onClick={() => handleEditTodo(idx)}>OK</Button>
+                  <Button type="button" color="success" onClick={() => handleEditTodo({todoId: todo.todo_id, todo: todo.editText})}>OK</Button>
                   {' '}
                   <Button type="button" color="danger" onClick={() => handleChangeEditStatus(idx)}>X</Button>
                 </td>)
                 : (<td className="text-center">
                   <Button type="button" color="warning" onClick={() => handleChangeEditStatus(idx)}>Edit</Button>
                   {' '}
-                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.todoId)}>Remove</Button>
+                  <Button type="button" color="danger" onClick={() => handleRemoveTodo(todo.todo_id)}>Remove</Button>
                 </td>)
               }
             </tr>)

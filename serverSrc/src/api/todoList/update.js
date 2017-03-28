@@ -1,5 +1,5 @@
 'use strict';
-const promise = require('bluebird'); 
+const promise = require('bluebird');
 
 const options = {
     promiseLib: promise // overriding the default (ES6 Promise);
@@ -10,11 +10,11 @@ const pgp = require('pg-promise')(options);
 const Response = require('../../Response');
 
 exports.update = (event, context, callback) => {
-  //const bodyData = JSON.parse(event.body);
+  const bodyData = JSON.parse(event.body);
 
-  const userId = 2;//bodyData.userId;
-  const todoId = 4;//bodyData.todoId;
-  const todo = '後端實做吧yayaya';//bodyData.todo;
+  const userId = 1;//bodyData.userId;
+  const todoId = bodyData.todo.todoId;
+  const todo = bodyData.todo.todo;
 
   const db = pgp(process.env.RDS_URL);
 
@@ -23,9 +23,9 @@ exports.update = (event, context, callback) => {
         callback(null, new Response(200));
     })
     .catch(error => {
-        callback(error); 
+        callback(error);
     })
     .finally(() => {
-        pgp.end(); 
+        pgp.end();
     });
 };
