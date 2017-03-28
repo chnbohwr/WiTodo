@@ -5,8 +5,10 @@ import { testApi } from '../../../services/api';
 import types from './counterConstant';
 import counterAction from './counterAction';
 
+const x = 0;
+
 function* watchIncrement() {
-  while (true) {
+  while (x === 0) {
     const { payload } = yield take(types.DELAY_INCREMENT);
     yield delay(3000);
     yield put(counterAction.increment(payload));
@@ -14,7 +16,7 @@ function* watchIncrement() {
 }
 
 function* watchCallApi() {
-  while (true) {
+  while (x === 0) {
     yield take(types.CALL_API);
     const data = yield call(testApi);
     yield put(counterAction.increment(data.length));

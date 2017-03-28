@@ -3,7 +3,7 @@ import { Table, Button, Input } from 'reactstrap';
 
 export default class TodoTable extends Component {
   static propTypes = {
-    todos: PropTypes.shape,
+    todos: PropTypes.arrayOf(PropTypes.object),
     handleEditTodo: PropTypes.func,
     handleRemoveTodo: PropTypes.func,
     handleChangeEditStatus: PropTypes.func,
@@ -11,6 +11,7 @@ export default class TodoTable extends Component {
   }
 
   changeToEditTodo = (idx) => {
+    console.log(idx);
     this.setState({
 
     });

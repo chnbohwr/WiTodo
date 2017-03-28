@@ -16,7 +16,7 @@ import TodoTable from './components/TodoTable';
 )
 export default class TodoList extends Component {
   static propTypes = {
-    todoList: PropTypes.shape,
+    todoList: PropTypes.arrayOf(PropTypes.object),
     getTodo: PropTypes.func,
     addTodo: PropTypes.func,
     editTodo: PropTypes.func,
