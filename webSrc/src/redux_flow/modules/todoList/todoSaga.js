@@ -16,16 +16,24 @@ function* watchGetTodoList() {
 
 function* watchAddTodo() {
   while (x === 0) {
-    const todo = yield take(types.ADD_TODO);
-    const data = yield call(webApi.addTodo, todo.payload);
+    const { payload } = yield take(types.ADD_TODO);
+    const data = yield call(webApi.addTodo, payload);
+    yield put(todoAction.getTodo());
+  }
+}
+
+function* watchEditTodo() {
+  while (x === 0) {
+    const { payload } = yield take(types.EDIT_TODO);
+    const data = yield call(webApi.editTodo, payload);
     yield put(todoAction.getTodo());
   }
 }
 
 function* watchDeleteTodo() {
   while (x === 0) {
-    const todo = yield take(types.REMOVE_TODO);
-    const data = yield call(webApi.deleteTodo, todo.payload);
+    const { payload } = yield take(types.REMOVE_TODO);
+    const data = yield call(webApi.deleteTodo, payload);
     yield put(todoAction.getTodo());
   }
 }
@@ -33,5 +41,6 @@ function* watchDeleteTodo() {
 export default [
   fork(watchGetTodoList),
   fork(watchAddTodo),
+  fork(watchEditTodo),
   fork(watchDeleteTodo),
 ];

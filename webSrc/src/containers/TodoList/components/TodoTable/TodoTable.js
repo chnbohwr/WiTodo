@@ -10,13 +10,6 @@ export default class TodoTable extends Component {
     handleChangeEditText: PropTypes.func,
   }
 
-  changeToEditTodo = (idx) => {
-    console.log(idx);
-    this.setState({
-
-    });
-  }
-
   render() {
     const { todos, handleRemoveTodo, handleChangeEditStatus, handleChangeEditText, handleEditTodo } = this.props;
 
@@ -49,7 +42,7 @@ export default class TodoTable extends Component {
               {
                 todo.isEdit
                 ? (<td className="text-center">
-                  <Button type="button" color="success" onClick={() => handleEditTodo(idx)}>OK</Button>
+                  <Button type="button" color="success" onClick={() => handleEditTodo({todoId: todo.todo_id, todo: todo.editText})}>OK</Button>
                   {' '}
                   <Button type="button" color="danger" onClick={() => handleChangeEditStatus(idx)}>X</Button>
                 </td>)

@@ -1,5 +1,5 @@
 'use strict';
-const promise = require('bluebird'); 
+const promise = require('bluebird');
 
 const options = {
     promiseLib: promise // overriding the default (ES6 Promise);
@@ -11,22 +11,22 @@ const Response = require('../../Response');
 const cn = require('../../../config');
 
 exports.update = (event, context, callback) => {
-  //const bodyData = JSON.parse(event.body);
+  const bodyData = JSON.parse(event.body);
 
-  const userId = 2;//bodyData.userId;
-  const todoId = 4;//bodyData.todoId;
-  const todo = '後端實做吧yayaya';//bodyData.todo;
+  const userId = 1;//bodyData.userId;
+  const todoId = bodyData.todo.todoId;
+  const todo = bodyData.todo.todo;
 
-  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database);   
+  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database);
 
   db.none('UPDATE todo_list SET todo = $1 WHERE todo_id = $2 AND user_id = $3', [todo, todoId, userId])
     .then(data => {
-        callback(null, new Response(200)); 
+        callback(null, new Response(200));
     })
     .catch(error => {
-        callback(error); 
+        callback(error);
     })
     .finally(() => {
-        pgp.end(); 
+        pgp.end();
     });
 };

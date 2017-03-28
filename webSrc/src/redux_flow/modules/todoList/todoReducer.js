@@ -11,15 +11,6 @@ export default handleActions({
     editText: '',
   })),
 
-  [types.EDIT_TODO]: (state, { payload }) => ([
-    ...state.slice(0, payload),
-    {
-      ...state[payload],
-      todo: state[payload].editText,
-      isEdit: false,
-    },
-    ...state.slice(payload + 1),
-  ]),
   [types.CHANGE_EDIT_STATUS]: (state, { payload }) => ([
     ...state.slice(0, payload),
     {
