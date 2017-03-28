@@ -14,6 +14,15 @@ function* watchGetTodoList() {
   }
 }
 
+function* watchAddTodo() {
+  while (x === 0) {
+    const todo = yield take(types.ADD_TODO);
+    const data = yield call(webApi.addTodo, todo.payload);
+    yield put(todoAction.getTodo());
+  }
+}
+
 export default [
   fork(watchGetTodoList),
+  fork(watchAddTodo),
 ];

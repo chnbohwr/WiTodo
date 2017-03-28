@@ -31,7 +31,7 @@ export default class TodoTable extends Component {
         </thead>
         <tbody>
           { todos.map((todo, idx) => (
-            <tr key={`todo_${todo.todoId}`}>
+            <tr key={`todo_${todo.todo_id}`}>
               <td className="text-center">
                 {idx + 1}
               </td>

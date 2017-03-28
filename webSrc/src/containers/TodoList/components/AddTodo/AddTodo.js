@@ -13,15 +13,6 @@ export default class AddTodo extends Component {
     };
   }
 
-  addTodo = (text) => {
-    const { handleAddTodo } = this.props;
-    handleAddTodo({ todoId: new Date().getTime(), todo: text, isEdit: false, editText: '', });
-
-    this.setState({
-      text: '',
-    });
-  }
-
   changeText = (e) => {
     this.setState({
       text: e.target.value,
@@ -30,6 +21,7 @@ export default class AddTodo extends Component {
 
   render() {
     const { text } = this.state;
+    const { handleAddTodo } = this.props;
 
     return (
       <Form inline>
@@ -42,7 +34,7 @@ export default class AddTodo extends Component {
           />
         </FormGroup>
         {' '}
-        <Button type="button" color="primary" onClick={() => this.addTodo(text)}>Add</Button>
+        <Button type="button" color="primary" onClick={() => handleAddTodo(text)}>Add</Button>
       </Form>
     );
   }

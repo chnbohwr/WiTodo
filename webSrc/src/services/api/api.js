@@ -13,7 +13,9 @@ import client from './callApi';
 
 // todoList
 export const getTodoList = () => client.get('todoList/list');
+export const addTodo = todo => client.post('todoList/create', { data: { todo } });
 
 export const webApi = {
-  getTodoList
+  getTodoList,
+  addTodo,
 };

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Footer } from '../../components';
 
 export default class App extends Component {
   static propTypes = {
@@ -10,7 +9,6 @@ export default class App extends Component {
     return (
       <div>
         {this.props.children}
-        <Footer />
       </div>
     );
   }

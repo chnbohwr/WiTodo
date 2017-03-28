@@ -5,15 +5,11 @@ const initialState = [];
 
 export default handleActions({
   [types.GET_TODO_SUCCESS]: (state, { payload }) => payload.map(todo => ({
-    todoId: todo.todoId,
+    todo_id: todo.todo_id,
     todo: todo.todo,
     isEdit: false,
     editText: '',
   })),
-  [types.ADD_TODO]: (state, { payload }) => ([
-    ...state,
-    { ...payload },
-  ]),
 
   [types.EDIT_TODO]: (state, { payload }) => ([
     ...state.slice(0, payload),
@@ -43,6 +39,6 @@ export default handleActions({
   ]),
 
   [types.REMOVE_TODO]: (state, { payload }) => ([
-    ...state.filter(todo => todo.todoId !== payload)
+    ...state.filter(todo => todo.todo_id !== payload)
   ]),
 }, initialState);
