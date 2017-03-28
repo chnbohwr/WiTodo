@@ -8,7 +8,6 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 const Response = require('../../Response');
-const cn = require('../../../config');
 
 exports.create = (event, context, callback) => {
   //const bodyData = JSON.parse(event.body);
@@ -16,7 +15,7 @@ exports.create = (event, context, callback) => {
   const userId = 1; //bodyData.userId;
   const todoText = '今天開出API 222'; //bodyData.todo;
 
-  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database);   
+  const db = pgp(process.env.RDS_URL);   
 
   db.none('INSERT INTO todo_list(todo, user_id) VALUES($1::character varying, $2::int)', [todoText, userId])
     .then(data => {
