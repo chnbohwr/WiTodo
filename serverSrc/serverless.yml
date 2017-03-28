@@ -5,7 +5,16 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 provider:
   name: aws
   runtime: nodejs6.10
-  memorySize: 128
+  memorySize: 128  
+  region: us-east-1
+  vpc:
+    securityGroupIds:
+      - sg-0a34fd75
+    subnetIds:
+      - subnet-183b7443
+      - subnet-4bd68766
+      - subnet-d2a7a19b
+      - subnet-242ba018
 
 plugins:
   - serverless-offline
