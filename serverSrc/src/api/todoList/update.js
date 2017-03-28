@@ -8,7 +8,6 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 const Response = require('../../Response');
-const cn = require('../../../config');
 
 exports.update = (event, context, callback) => {
   const bodyData = JSON.parse(event.body);
@@ -17,7 +16,7 @@ exports.update = (event, context, callback) => {
   const todoId = bodyData.todo.todoId;
   const todo = bodyData.todo.todo;
 
-  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database);
+  const db = pgp(process.env.RDS_URL);
 
   db.none('UPDATE todo_list SET todo = $1 WHERE todo_id = $2 AND user_id = $3', [todo, todoId, userId])
     .then(data => {

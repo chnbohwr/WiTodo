@@ -8,14 +8,13 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 const Response = require('../../Response');
-const cn = require('../../../config');
 
 exports.list = (event, context, callback) => {
   //const bodyData = JSON.parse(event.body);
   
   const userId = 1; //bodyData.userId;
 
-  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database); 
+  const db = pgp(process.env.RDS_URL);
 
   db.any('SELECT * FROM todo_list WHERE user_id = $1', [userId])
     .then(data => {

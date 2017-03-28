@@ -7,6 +7,8 @@ provider:
   runtime: nodejs6.10
   memorySize: 128  
   region: us-east-1
+  environment:
+    RDS_URL: ${env:RDS_URL}
   vpc:
     securityGroupIds:
       - sg-0a34fd75

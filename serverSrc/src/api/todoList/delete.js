@@ -8,7 +8,6 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 const Response = require('../../Response');
-const cn = require('../../../config');
 
 exports.delete = (event, context, callback) => {
   const bodyData = JSON.parse(event.body);
@@ -16,7 +15,7 @@ exports.delete = (event, context, callback) => {
   const userId = 1;//bodyData.userId;
   const todoId = bodyData.todoId;
 
-  const db = pgp('postgres://' + cn.user + ':'+ cn.password +'@' + cn.host + ':5432/' + cn.database);
+  const db = pgp(process.env.RDS_URL);
 
   db.none('DELETE FROM todo_list WHERE todo_id = $1 AND user_id = $2', [todoId, userId])
     .then(data => {

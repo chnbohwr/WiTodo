@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "serverless": "^1.9.0",
-    "serverless-offline": "^3.13.0",
+    "serverless-offline": "^3.13.1",
     "serverless-plugin-include-dependencies": "^2.0.0"
   },
   "dependencies": {
