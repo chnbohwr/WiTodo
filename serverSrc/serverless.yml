@@ -10,7 +10,12 @@ provider:
 plugins:
   - serverless-offline
   - serverless-plugin-include-dependencies
-  
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**/aws-sdk/**
+
 functions:
   create:
     handler: src/api/todoList/create.create
@@ -27,7 +32,7 @@ functions:
           path: todoList/update
           method: put
           cors: true
-  
+
   delete:
     handler: src/api/todoList/delete.delete
     events:
