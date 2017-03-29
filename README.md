@@ -3,7 +3,7 @@
 ### General
 
 #### Setting Environment Variables
-add AWS_REGION, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY,RDS_URL to environment variable
+add AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and RDS_URL to environment variable
 ```shell
 export AWS_REGION="us-ease-1"
 export AWS_ACCESS_KEY_ID="XXXXXXXX"
@@ -26,13 +26,13 @@ $ npm install
 
 ```shell
 $ cd WiToDo/serverSrc
-$ npm rum offline
+$ npm run offline
 ```
 
 #### Deploy APIs to Lambda
 ```shell
 $ cd WiToDo/serverSrc
-$ npm rum deploy
+$ npm run deploy
 ```
 
 ---
