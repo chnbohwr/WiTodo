@@ -19,6 +19,7 @@ import initialLocale from 'locale/';
 import App from './App';
 import NotFound from './NotFound';
 import TodoList from './TodoList';
+import Login from './Login';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -31,9 +32,9 @@ const Main = () => (
     <Router key={Math.random()} history={history}>
       <Route path="/" component={App}>
         { /* Main route */}
-        <IndexRoute component={TodoList} />
+        <IndexRoute component={Login} />
         { /* Routes */}
-
+        <Route path="/todoList" component={TodoList} />
         { /* Catch all route */}
         <Route path="*" component={NotFound} />
       </Route>
