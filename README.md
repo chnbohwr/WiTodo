@@ -21,14 +21,16 @@ $ cd WiToDo/serverSrc
 $ npm install
 ```
 
-#### Offline Test
+#### Offline Test 
+- start at : http://localhost:3000
+
 ```shell
 $ cd WiToDo/serverSrc
 $ npm rum offline
 ```
 
 #### Deploy APIs to Lambda
-```
+```shell
 $ cd WiToDo/serverSrc
 $ npm rum deploy
 ```
@@ -44,12 +46,13 @@ $ npm install  # or use yarn
 ```
 
 #### run localhost
-```
-$ mpm start
+- start at : http://localhost:8000
+- frontend default call offline api, need to run backend offline first
+```shell
+$ npm start
 ```
 
 #### Deploy to AWS S3
-
-```
+```shell
 $ npm run deploy
 ```
