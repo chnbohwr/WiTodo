@@ -6,35 +6,43 @@ import types from './todoConstant';
 
 const x = 0;
 
+function* getTodoList() {
+  try {
+    const data = yield call(webApi.getTodoList);
+    yield put(todoAction.getTodoSuccess(data.error ? [] : data));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* watchGetTodoList() {
   while (x === 0) {
     yield take(types.GET_TODO);
-    const data = yield call(webApi.getTodoList);
-    yield put(todoAction.getTodoSuccess(data.error ? [] : data));
+    yield fork(getTodoList);
   }
 }
 
 function* watchAddTodo() {
   while (x === 0) {
     const { payload } = yield take(types.ADD_TODO);
-    const data = yield call(webApi.addTodo, payload);
-    yield put(todoAction.getTodo());
+    yield call(webApi.addTodo, payload);
+    yield fork(getTodoList);
   }
 }
 
 function* watchEditTodo() {
   while (x === 0) {
     const { payload } = yield take(types.EDIT_TODO);
-    const data = yield call(webApi.editTodo, payload);
-    yield put(todoAction.getTodo());
+    yield call(webApi.editTodo, payload);
+    yield fork(getTodoList);
   }
 }
 
 function* watchDeleteTodo() {
   while (x === 0) {
     const { payload } = yield take(types.REMOVE_TODO);
-    const data = yield call(webApi.deleteTodo, payload);
-    yield put(todoAction.getTodo());
+    yield call(webApi.deleteTodo, payload);
+    yield fork(getTodoList);
   }
 }
 
