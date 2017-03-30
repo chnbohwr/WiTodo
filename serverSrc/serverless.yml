@@ -9,6 +9,7 @@ provider:
   region: us-east-1
   environment:
     RDS_URL: ${env:RDS_URL}
+    JWT_SECRET : ${env:JWT_SECRET}
   vpc:
     securityGroupIds:
       - sg-0a34fd75
@@ -28,6 +29,14 @@ package:
     - node_modules/**/aws-sdk/**
 
 functions:
+  login:
+    handler: src/api/auth/login.login
+    events:
+      - http:
+          path: auth/login
+          method: post
+          cors: true
+
   create:
     handler: src/api/todoList/create.create
     events:
@@ -62,3 +71,4 @@ functions:
           authorizer: auth
   auth:
     handler: src/api/auth.auth
+
