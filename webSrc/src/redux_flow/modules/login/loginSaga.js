@@ -1,4 +1,4 @@
-import { fork, take, call, put, takeEvery } from 'redux-saga/effects';
+import { fork, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import types from './LoginConstant';

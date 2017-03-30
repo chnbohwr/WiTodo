@@ -17,11 +17,10 @@ export default class Counter extends Component {
     increment: PropTypes.func,
     decrement: PropTypes.func,
     delayIncrement: PropTypes.func,
-    callApi: PropTypes.func,
   }
 
   render() {
-    const { counter, increment, decrement, delayIncrement, callApi } = this.props;
+    const { counter, increment, decrement, delayIncrement } = this.props;
 
     return (
       <div>
@@ -31,7 +30,6 @@ export default class Counter extends Component {
         <Button color="success" onClick={() => increment(1)}>+1</Button>
         <Button color="success" onClick={() => decrement(1)}>-1</Button>
         <Button color="danger" onClick={() => delayIncrement(5)}>delay +5</Button>
-        <Button color="warning" onClick={() => callApi()}>call api</Button>
       </div>
     );
   }

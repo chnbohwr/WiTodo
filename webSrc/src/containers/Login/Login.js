@@ -5,7 +5,7 @@ import { loginActions } from 'redux_flow/actions/';
 import './Login.less';
 
 @connect(
-  state => ({
+  () => ({
 
   }), {
     ...loginActions,

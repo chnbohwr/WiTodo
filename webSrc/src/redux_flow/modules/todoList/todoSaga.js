@@ -1,4 +1,4 @@
-import { fork, take, call, put, takeEvery } from 'redux-saga/effects';
+import { fork, call, put, takeEvery } from 'redux-saga/effects';
 
 import { webApi } from '../../../services/api';
 import todoAction from './todoAction';

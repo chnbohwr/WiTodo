@@ -17,6 +17,7 @@ import configureStore from 'redux_flow/store';
 import initialLocale from 'locale/';
 // import relative path
 import App from './App';
+import Home from './Home';
 import NotFound from './NotFound';
 import TodoList from './TodoList';
 import Login from './Login';
@@ -35,6 +36,7 @@ const Main = () => (
         <IndexRoute component={Login} />
         { /* Routes */}
         <Route path="/todoList" component={TodoList} />
+        <Route path="/counter" component={Home} />
         { /* Catch all route */}
         <Route path="*" component={NotFound} />
       </Route>
