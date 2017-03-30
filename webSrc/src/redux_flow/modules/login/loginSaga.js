@@ -1,17 +1,17 @@
-import { fork, take, call, put } from 'redux-saga/effects';
+import { fork, take, call, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
+import types from './LoginConstant';
 import loginAction from './loginAction';
 
-const x = 0;
+function* loginRequest() {
+  yield put(loginAction.loginSuccess());
+  yield sessionStorage.setItem('isLogin', true);
+  yield put(push('/todoList'));
+}
 
 function* watchLoginRequest() {
-  while (x === 0) {
-    const { payload } = yield take(loginAction.loginRequest);
-    yield put(loginAction.loginSuccess());
-    yield sessionStorage.setItem('isLogin', true);
-    yield put(push('/todoList'));
-  }
+  yield takeEvery(types.LOGIN_REQUEST, loginRequest);
 }
 
 export default [

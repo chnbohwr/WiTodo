@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import types from './LoginConstant';
 
 const initialState = {
-  isLogin: !!sessionStorage.getItem('isLogin') || false,
+  isLogin: sessionStorage.getItem('isLogin') ? JSON.parse(sessionStorage.getItem('isLogin')) : false,
 };
 
 export default handleActions({

@@ -1,10 +1,8 @@
-import { fork, take, call, put } from 'redux-saga/effects';
+import { fork, take, call, put, takeEvery } from 'redux-saga/effects';
 
 import { webApi } from '../../../services/api';
 import todoAction from './todoAction';
 import types from './todoConstant';
-
-const x = 0;
 
 function* getTodoList() {
   try {
@@ -15,35 +13,36 @@ function* getTodoList() {
   }
 }
 
+function* addTodo({ payload }) {
+  yield call(webApi.addTodo, payload);
+  yield fork(getTodoList);
+}
+
+function* editTodo({ payload }) {
+  yield call(webApi.editTodo, payload);
+  yield fork(getTodoList);
+}
+
+function* deleteTodo({ payload }) {
+  debugger;
+  yield call(webApi.deleteTodo, payload);
+  yield fork(getTodoList);
+}
+
 function* watchGetTodoList() {
-  while (x === 0) {
-    yield take(types.GET_TODO);
-    yield fork(getTodoList);
-  }
+  yield takeEvery(types.GET_TODO, getTodoList);
 }
 
 function* watchAddTodo() {
-  while (x === 0) {
-    const { payload } = yield take(types.ADD_TODO);
-    yield call(webApi.addTodo, payload);
-    yield fork(getTodoList);
-  }
+  yield takeEvery(types.ADD_TODO, addTodo);
 }
 
 function* watchEditTodo() {
-  while (x === 0) {
-    const { payload } = yield take(types.EDIT_TODO);
-    yield call(webApi.editTodo, payload);
-    yield fork(getTodoList);
-  }
+  yield takeEvery(types.EDIT_TODO, editTodo);
 }
 
 function* watchDeleteTodo() {
-  while (x === 0) {
-    const { payload } = yield take(types.REMOVE_TODO);
-    yield call(webApi.deleteTodo, payload);
-    yield fork(getTodoList);
-  }
+  yield takeEvery(types.REMOVE_TODO, deleteTodo);
 }
 
 export default [

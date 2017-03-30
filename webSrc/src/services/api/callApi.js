@@ -26,7 +26,7 @@ async function callApi(endpoint, params = {}, method) {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      // 'X-Access-Token': accessToken
+      Authorization: '123',
     },
     body: postJson,
     method
