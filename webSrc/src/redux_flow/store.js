@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
 import reducer from './reducer';
@@ -9,7 +9,7 @@ import sagaManager from './sagaManager';
 function reduxStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
   const middleware = [
-    routerMiddleware(browserHistory),
+    routerMiddleware(hashHistory),
     sagaMiddleware,
   ];
 
