@@ -30,12 +30,8 @@ async function callApi(endpoint, params = {}, method) {
     body: postJson,
     method
   })
-    .then((response) => {
-      debugger;
-      return response.json().then(json => ({json, response}));
-    })
+    .then(response => response.json().then(json => ({json, response})))
     .then(({json, response}) => {
-      debugger;
       if (!response.ok) {
         return Promise.reject(json);
       }
