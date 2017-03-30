@@ -16,10 +16,16 @@ const generatePolicy = (principalId, effect, resource) => ({
 
 exports.auth = (event, context, callback) => {
   const token = event.authorizationToken;
-  console.log(token)
-
-  var { userId, roleId } = jwt.decode(token, process.env.JWT_SECRET);
-  console.log(userId);
+  
+  let decodeResult = {};
+  
+  try{
+    decodeResult = jwt.decode(token, process.env.JWT_SECRET);
+  } catch(e){
+    callback('Unauthorized');
+  }
+  
+  const { userId, roleId } = decodeResult;
 
   // In this example, the token is treated as the status for simplicity.
   switch (roleId) {
