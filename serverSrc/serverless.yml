@@ -47,7 +47,9 @@ functions:
           path: todoList/create
           method: post
           cors: true
-          authorizer: auth
+          authorizer:
+            name: auth
+            resultTtlInSeconds: 0
 
   update:
     handler: src/api/todoList/update.update
@@ -56,7 +58,9 @@ functions:
           path: todoList/update
           method: put
           cors: true
-          authorizer: auth
+          authorizer:
+            name: auth
+            resultTtlInSeconds: 0
 
   delete:
     handler: src/api/todoList/delete.delete
@@ -65,7 +69,9 @@ functions:
           path: todoList/delete
           method: delete
           cors: true
-          authorizer: auth
+          authorizer:
+            name: auth
+            resultTtlInSeconds: 0
 
   list:
     handler: src/api/todoList/list.list
@@ -74,4 +80,6 @@ functions:
           path: todoList/list
           method: get
           cors: true
-          authorizer: auth
+          authorizer:
+            name: auth
+            resultTtlInSeconds: 0
