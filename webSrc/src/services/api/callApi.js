@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
 import mapUrl from '../utils/url';
+import getJwtFromLocalStorage from '../../utils/getJwtFromLocalStorage';
 
 // deal with params, because not all property named 'data'...
 async function getPostJsonData(params) {
@@ -20,13 +21,14 @@ async function getPostJsonData(params) {
 
 async function callApi(endpoint, params = {}, method) {
   const fullUrl = mapUrl(endpoint);
+  const accessToken = await getJwtFromLocalStorage();
   const postJson = await getPostJsonData(params);
 
   return fetch(fullUrl, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: '123',
+      Authorization: accessToken,
     },
     body: postJson,
     method

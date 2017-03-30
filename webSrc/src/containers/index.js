@@ -33,9 +33,9 @@ const Main = () => (
     <Router key={Math.random()} history={history}>
       <Route path="/" component={App}>
         { /* Main route */}
-        <IndexRoute component={Login} />
+        <IndexRoute component={TodoList} />
         { /* Routes */}
-        <Route path="/todoList" component={TodoList} />
+        <Route path="/login" component={Login} />
         <Route path="/counter" component={Home} />
         { /* Catch all route */}
         <Route path="*" component={NotFound} />
