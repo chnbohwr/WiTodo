@@ -4,7 +4,7 @@ import getJwtFromLocalStorage from '../../utils/getJwtFromLocalStorage';
 
 // deal with params, because not all property named 'data'...
 async function getPostJsonData(params) {
-  const itemType = await ['data', 'stages'].find((item) => {
+  const itemType = await ['data'].find((item) => {
     if (params[item]) {
       return item;
     }
@@ -13,9 +13,6 @@ async function getPostJsonData(params) {
   });
 
   if (!itemType) return null;
-  if (itemType === 'stages') {
-    return JSON.stringify({stages: params.stages});
-  }
   return JSON.stringify(params[itemType]);
 }
 
@@ -33,8 +30,12 @@ async function callApi(endpoint, params = {}, method) {
     body: postJson,
     method
   })
-    .then(response => response.json().then(json => ({json, response})))
+    .then((response) => {
+      debugger;
+      return response.json().then(json => ({json, response}));
+    })
     .then(({json, response}) => {
+      debugger;
       if (!response.ok) {
         return Promise.reject(json);
       }

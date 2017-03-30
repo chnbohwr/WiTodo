@@ -13,7 +13,7 @@ const checkLoginInfo = (userInfo, dbInfo, callback) => {
   const { user_pw: password, role_id: roleId, user_id: userId } = dbInfo;
 
   if (userInfo.password !== password) {
-    callback(null, new Response(400, "Account or Password Error!"));
+    callback(null, new Response(400, { message: "Account or Password Error!" }));
   } else {
     const tokenId = createToken(userId, roleId);
     callback(null, new Response(200, {tokenId}));
@@ -22,11 +22,10 @@ const checkLoginInfo = (userInfo, dbInfo, callback) => {
 }
 
 exports.login = (event, context, callback) => {
-
   const userInfo = JSON.parse(event.body);
 
   if (!userInfo.account || !userInfo.password) {
-    callback(null, new Response(400, "You must send the account and the password"));
+    callback(null, new Response(400, { message: "You must send the account and the password" }));
   }
 
   db.one('SELECT * FROM wi_user WHERE user_name = $1', [userInfo.account])

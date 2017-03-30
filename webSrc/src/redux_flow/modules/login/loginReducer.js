@@ -2,12 +2,12 @@ import { handleActions } from 'redux-actions';
 import types from './LoginConstant';
 
 const initialState = {
-  isLogin: sessionStorage.getItem('isLogin') ? JSON.parse(sessionStorage.getItem('isLogin')) : false,
+  error: '',
 };
 
 export default handleActions({
-  [types.LOGIN_SUCCESS]: state => ({
+  [types.LOGIN_FAILURE]: (state, { payload }) => ({
     ...state,
-    isLogin: true,
+    error: payload,
   })
 }, initialState);

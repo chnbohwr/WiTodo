@@ -19,7 +19,8 @@ function* addTodo({ payload }) {
 }
 
 function* editTodo({ payload }) {
-  yield call(webApi.editTodo, payload);
+  const { todo, todoId } = payload;
+  yield call(webApi.editTodo, todo, todoId);
   yield fork(getTodoList);
 }
 
