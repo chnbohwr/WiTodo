@@ -19,7 +19,7 @@ exports.auth = (event, context, callback) => {
   console.log(token)
 
   var { userId, roleId } = jwt.decode(token, process.env.JWT_SECRET);
-  console.log(userId);
+  console.log('userId', userId);
 
   // In this example, the token is treated as the status for simplicity.
   switch (roleId) {
