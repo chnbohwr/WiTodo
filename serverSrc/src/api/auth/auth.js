@@ -2,8 +2,8 @@
 
 const jwt = require('jsonwebtoken');
 
-const generatePolicy = (principalId, effect, resource) => ({
-  principalId,
+const generatePolicy = (userId, effect, resource) => ({
+  principalId: jwt.sign({ userId, resource}, process.env.JWT_SECRET),
   policyDocument: {
     Version: '2012-10-17',
     Statement: [{
@@ -11,7 +11,8 @@ const generatePolicy = (principalId, effect, resource) => ({
       Effect: effect,
       Resource: resource,
     }],
-  }
+  },
+  context:{ userId }
 });
 
 exports.auth = (event, context, callback) => {
