@@ -11,7 +11,8 @@ const generatePolicy = (userId, effect, resource) => ({
       Effect: effect,
       Resource: resource,
     }],
-  }
+  },
+  context:{ userId }
 });
 
 exports.auth = (event, context, callback) => {
