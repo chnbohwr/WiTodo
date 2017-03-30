@@ -9,6 +9,7 @@ export AWS_REGION="us-ease-1"
 export AWS_ACCESS_KEY_ID="XXXXXXXX"
 export AWS_SECRET_ACCESS_KEY="XXXXXOOOOO"
 export RDS_URL="postgres://username:pass@host.com:5432/database"
+export JWT_SECRET="XXXXXXXXXXXXXXXOO"
 ```
 
 ---
