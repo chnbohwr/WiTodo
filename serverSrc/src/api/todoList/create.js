@@ -1,29 +1,17 @@
 'use strict';
-const promise = require('bluebird');
-
-const options = {
-    promiseLib: promise // overriding the default (ES6 Promise);
-};
-
-const pgp = require('pg-promise')(options);
-
 const Response = require('../../Response');
+const { pgp, db } = require('../../util/database');
 
 exports.create = (event, context, callback) => {
-  const bodyData = JSON.parse(event.body);
+  const todoText = JSON.parse(event.body).todo;
   const userId = 1; //bodyData.userId;
-  const todoText = bodyData.todo;
-
-  const db = pgp(process.env.RDS_URL);
 
   db.none('INSERT INTO todo_list(todo, user_id) VALUES($1::character varying, $2::int)', [todoText, userId])
     .then(data => {
-        callback(null, new Response(200));
-    })
-    .catch(error => {
-        callback(error);
-    })
-    .finally(() => {
-        pgp.end();
+      callback(null, new Response(200));
+    }).catch(error => {
+      callback(error);
+    }).finally(() => {
+      pgp.end();
     });
 };
