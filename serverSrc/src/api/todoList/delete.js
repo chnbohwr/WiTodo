@@ -4,7 +4,7 @@ const Response = require('../../util/Response');
 
 exports.delete = (event, context, callback) => {
 
-  const userId = event.requestContext.authorizer.principalId;
+  const userId = event.requestContext.authorizer.principalId.userId;
   const { todoId } = JSON.parse(event.body);
 
   db.none('DELETE FROM todo_list WHERE todo_id = $1 AND user_id = $2', [todoId, userId])

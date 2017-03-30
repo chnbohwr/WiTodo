@@ -2,8 +2,8 @@
 
 const jwt = require('jsonwebtoken');
 
-const generatePolicy = (principalId, effect, resource) => ({
-  principalId,
+const generatePolicy = (userId, effect, resource) => ({
+  principalId: { userId, resource},
   policyDocument: {
     Version: '2012-10-17',
     Statement: [{
