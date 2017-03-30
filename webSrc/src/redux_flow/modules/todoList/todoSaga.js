@@ -24,7 +24,6 @@ function* editTodo({ payload }) {
 }
 
 function* deleteTodo({ payload }) {
-  debugger;
   yield call(webApi.deleteTodo, payload);
   yield fork(getTodoList);
 }
