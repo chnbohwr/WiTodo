@@ -37,6 +37,9 @@ functions:
           method: post
           cors: true
 
+  auth:
+    handler: src/api/auth/auth.auth
+
   create:
     handler: src/api/todoList/create.create
     events:
@@ -69,6 +72,3 @@ functions:
           method: get
           cors: true
           authorizer: auth
-  auth:
-    handler: src/api/auth.auth
-

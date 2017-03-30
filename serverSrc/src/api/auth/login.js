@@ -1,12 +1,11 @@
 'use strict';
 
-const { pgp, db } = require('../../util/database');
 const jwt = require('jsonwebtoken');
-const Response = require('../../Response');
+const { pgp, db } = require('../../util/database');
+const Response = require('../../util/Response');
 const expireTime = 60*60;
 
 const createToken = (userId, roleId) => jwt.sign({ userId, roleId }, process.env.JWT_SECRET, { expiresIn: expireTime });
-
 
 const checkLoginInfo = (userInfo, dbInfo, callback) => {
 
