@@ -4,12 +4,14 @@ import { routerReducer } from 'react-router-redux';
 
 import counter from './modules/counter/counterReducer';
 import todoList from './modules/todoList/todoReducer';
+import login from './modules/login/loginReducer';
 
 const rootReducers = combineReducers({
   i18n: i18nReducer,
   routing: routerReducer,
   counter,
   todoList,
+  login,
 });
 
 export default rootReducers;

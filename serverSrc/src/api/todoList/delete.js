@@ -3,8 +3,9 @@ const { pgp, db } = require('../../util/database');
 const Response = require('../../util/Response');
 
 exports.delete = (event, context, callback) => {
+
   const userId = event.requestContext.authorizer.principalId;
-  const todoId = JSON.parse(event.body).todoId;
+  const { todoId } = JSON.parse(event.body);
 
   db.none('DELETE FROM todo_list WHERE todo_id = $1 AND user_id = $2', [todoId, userId])
     .then(data => {

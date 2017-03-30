@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { todoListActions } from 'redux_flow/actions/';
-
+import { Authentication } from '../../decorators';
 import QueryTodo from './components/QueryTodo';
 import AddTodo from './components/AddTodo';
 import TodoTable from './components/TodoTable';
 
+@Authentication
 @connect(
   state => ({
     todoList: state.todoList,

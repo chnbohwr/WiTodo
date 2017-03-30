@@ -1,0 +1,1 @@
+export indexeddb from './indexeddb';
