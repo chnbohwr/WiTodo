@@ -37,6 +37,9 @@ functions:
           method: post
           cors: true
 
+  auth:
+    handler: src/api/auth/auth.auth
+
   create:
     handler: src/api/todoList/create.create
     events:
@@ -44,6 +47,7 @@ functions:
           path: todoList/create
           method: post
           cors: true
+          authorizer: auth
 
   update:
     handler: src/api/todoList/update.update
@@ -52,6 +56,7 @@ functions:
           path: todoList/update
           method: put
           cors: true
+          authorizer: auth
 
   delete:
     handler: src/api/todoList/delete.delete
@@ -60,6 +65,7 @@ functions:
           path: todoList/delete
           method: delete
           cors: true
+          authorizer: auth
 
   list:
     handler: src/api/todoList/list.list
@@ -69,6 +75,3 @@ functions:
           method: get
           cors: true
           authorizer: auth
-  auth:
-    handler: src/api/auth.auth
-
