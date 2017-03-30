@@ -10,7 +10,7 @@ import React from 'react';
 
 import { Provider } from 'react-redux';
 // import package
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 // import webpack alias path
 import configureStore from 'redux_flow/store';
@@ -23,7 +23,7 @@ import TodoList from './TodoList';
 import Login from './Login';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 initialLocale(store);
 
 // add router key to fix this issue
