@@ -30,7 +30,7 @@ package:
 
 functions:
   login:
-    handler: src/api/auth/login.login
+    handler: src/api/auth/login/loginApi.login
     events:
       - http:
           path: auth/login
@@ -38,10 +38,10 @@ functions:
           cors: true
 
   auth:
-    handler: src/api/auth/auth.auth
+    handler: src/api/auth/authorize/auth.auth
 
   create:
-    handler: src/api/todoList/create.create
+    handler: src/api/todoList/create/createApi.create
     events:
       - http:
           path: todoList/create
@@ -50,7 +50,7 @@ functions:
           authorizer: auth
 
   update:
-    handler: src/api/todoList/update.update
+    handler: src/api/todoList/update/updateApi.update
     events:
       - http:
           path: todoList/update
@@ -59,7 +59,7 @@ functions:
           authorizer: auth
 
   delete:
-    handler: src/api/todoList/delete.delete
+    handler: src/api/todoList/delete/deleteApi.delete
     events:
       - http:
           path: todoList/delete
@@ -68,7 +68,7 @@ functions:
           authorizer: auth
 
   list:
-    handler: src/api/todoList/list.list
+    handler: src/api/todoList/list/listApi.list
     events:
       - http:
           path: todoList/list

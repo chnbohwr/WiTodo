@@ -1,6 +1,6 @@
 'use strict';
-const Response = require('../../util/Response');
-const { pgp, db } = require('../../util/database');
+const { pgp, db } = require('../../../util/database');
+const Response = require('../../../util/Response');
 
 exports.create = (event, context, callback) => {
   const { userId } = event.requestContext.authorizer;
