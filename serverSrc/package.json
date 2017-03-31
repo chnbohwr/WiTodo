@@ -6,11 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "serverless deploy",
-    "offline": "serverless offline"
+    "offline": "serverless offline",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^7.1.0",
+    "eslint": "^3.0.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.0.0",
     "serverless": "^1.9.0",
     "serverless-offline": "^3.13.1",
     "serverless-plugin-include-dependencies": "^2.0.0"
