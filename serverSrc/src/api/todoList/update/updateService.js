@@ -1,4 +1,6 @@
-const updateService = ({ todoId, todo, userId, callback, pgp, db, Response }) => {
+const Response = require('../../../util/Response');
+
+const updateService = ({ todoId, todo, userId, callback, pgp, db }) => {
   if (!todoId || !todo || !userId || !callback || !pgp || !db || !Response) {
     callback(new Error('miss argument'));
   }
