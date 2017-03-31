@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import types from './LoginConstant';
+import types from './authConstant';
 
 const initialState = {
   error: '',

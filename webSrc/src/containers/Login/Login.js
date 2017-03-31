@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Input, Alert } from 'reactstrap';
-import { loginActions } from 'redux_flow/actions/';
+import { authActions } from 'redux_flow/actions/';
 import './Login.less';
 
 @connect(
   state => ({
-    loginReducer: state.login,
+    authReducer: state.auth,
   }), {
-    ...loginActions,
+    ...authActions,
   }
 )
 export default class Login extends Component {
   static propTypes = {
-    loginReducer: PropTypes.shape({}),
+    authReducer: PropTypes.shape({}),
     loginRequest: PropTypes.func,
   }
 
@@ -39,14 +39,14 @@ export default class Login extends Component {
 
   render() {
     const { account, password } = this.state;
-    const { loginReducer } = this.props;
+    const { authReducer } = this.props;
 
     return (
       <Form className="content">
         {
-          loginReducer.error &&
+          authReducer.error &&
           <Alert color="danger">
-            <strong>{loginReducer.error}</strong>
+            <strong>{authReducer.error}</strong>
           </Alert>
         }
         <FormGroup>
