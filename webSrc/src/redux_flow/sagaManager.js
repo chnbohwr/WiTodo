@@ -1,13 +1,13 @@
 import { fork, cancel, take } from 'redux-saga/effects';
 import counterSaga from './modules/counter/counterSaga';
 import todoSaga from './modules/todoList/todoSaga';
-import loginSaga from './modules/login/loginSaga';
+import authSaga from './modules/auth/authSaga';
 
 export function* sagas() {
   yield [
     ...counterSaga,
     ...todoSaga,
-    ...loginSaga,
+    ...authSaga,
   ];
 }
 

@@ -1,3 +1,3 @@
 export counterActions from './modules/counter/counterAction';
-export todoListActions from './modules/todoList/todoAction.js';
-export loginActions from './modules/login/loginAction.js';
+export todoListActions from './modules/todoList/todoAction';
+export authActions from './modules/auth/authAction';
