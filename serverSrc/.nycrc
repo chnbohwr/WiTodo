@@ -1,0 +1,9 @@
+{
+  "include": [
+    "src/api/**/**/*Service.js"
+  ],
+  "reporter": [
+    "text",
+    "html"
+  ]
+}

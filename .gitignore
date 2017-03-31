@@ -1,3 +1,4 @@
 node_modules/
 .serverless/
-/serverSrc/config.js
+serverSrc/.nyc_output/
+serverSrc/coverage/
