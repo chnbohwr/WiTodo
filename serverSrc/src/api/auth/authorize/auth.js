@@ -1,5 +1,3 @@
-'use strict';
-
 const jwt = require('jsonwebtoken');
 
 const generatePolicy = (userId, effect, resource) => ({
@@ -12,20 +10,20 @@ const generatePolicy = (userId, effect, resource) => ({
       Resource: resource,
     }],
   },
-  context:{ userId }
+  context: { userId }
 });
 
 exports.auth = (event, context, callback) => {
   const token = event.authorizationToken;
-  
+
   let decodeResult = {};
-  
-  try{
+
+  try {
     decodeResult = jwt.decode(token, process.env.JWT_SECRET);
-  } catch(e){
+  } catch (e) {
     callback('Unauthorized');
   }
-  
+
   const { userId, roleId } = decodeResult;
 
   // In this example, the token is treated as the status for simplicity.
@@ -39,4 +37,4 @@ exports.auth = (event, context, callback) => {
     default:
       callback('Unauthorized');
   }
-}
+};
