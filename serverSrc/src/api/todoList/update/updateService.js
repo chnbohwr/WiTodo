@@ -6,9 +6,9 @@ const updateService = ({ todoId, todo, userId, callback, pgp, db }) => {
   }
 
   db.none('UPDATE todo_list SET todo = $1 WHERE todo_id = $2 AND user_id = $3', [todo, todoId, userId])
-    .then(data => {
+    .then((data) => {
       callback(null, new Response(200));
-    }).catch(error => {
+    }).catch((error) => {
       callback(error);
     }).finally(() => {
       pgp.end();

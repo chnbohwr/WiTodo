@@ -5,26 +5,26 @@ const deleteService = require('./deleteService');
 
 sinonPromise(sinon);
 
-const testData1 = { 
+const testData1 = {
   todoId: 1,
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { none: sinon.promise()}
 };
 
-const testData2 = { 
-  todoId: 1, 
+const testData2 = {
+  todoId: 1,
   userId: 4,
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { none: sinon.promise()}
 };
 
-const testData3 = { 
-  todoId: 1, 
+const testData3 = {
+  todoId: 1,
   userId: 4,
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { none: sinon.promise()}
 };
 

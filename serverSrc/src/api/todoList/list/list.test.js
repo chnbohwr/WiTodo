@@ -5,23 +5,23 @@ const listService = require('./listService');
 
 sinonPromise(sinon);
 
-const testData1 = { 
+const testData1 = {
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { any: sinon.promise()}
 };
 
-const testData2 = { 
+const testData2 = {
   userId: 4,
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { any: sinon.promise()}
 };
 
-const testData3 = { 
+const testData3 = {
   userId: 4,
   callback: sinon.spy(),
-  pgp:{ end: sinon.spy() },
+  pgp: { end: sinon.spy() },
   db: { any: sinon.promise()}
 };
 
