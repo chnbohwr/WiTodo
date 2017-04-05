@@ -15,6 +15,7 @@ export JWT_SECRET="XXXXXXXXXXXXXXXOO"
 ---
 
 ### Use CLI Create DB
+before deploy to lambda to AWS, you need create a database on AWS RDS.
 ```shell
 $ aws rds create-db-instance \
   --db-instance-identifier dbname \
@@ -41,17 +42,21 @@ $ cd WiToDo/serverSrc
 $ npm install
 ```
 
-#### Offline Test 
+#### Offline run server
 - start at : http://localhost:3000
 
 ```shell
-$ cd WiToDo/serverSrc
 $ npm run offline
+```
+
+#### Unit Test
+- it will generate coverage report at `serverSrc/coverage/index.html`
+```shell
+$ npm test
 ```
 
 #### Deploy APIs to Lambda
 ```shell
-$ cd WiToDo/serverSrc
 $ npm run deploy
 ```
 
