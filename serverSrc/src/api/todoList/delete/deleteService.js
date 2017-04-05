@@ -6,9 +6,9 @@ const deleteService = ({ userId, todoId, callback, pgp, db }) => {
   }
 
   db.none('DELETE FROM todo_list WHERE todo_id = $1 AND user_id = $2', [todoId, userId])
-    .then(data => {
+    .then((data) => {
       callback(null, new Response(200));
-    }).catch(error => {
+    }).catch((error) => {
       callback(error);
     }).finally(() => {
       pgp.end();
