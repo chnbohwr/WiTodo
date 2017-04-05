@@ -37,6 +37,7 @@ describe('createService', () => {
 
   it('simulate database reject event', () => {
     createService(testData2);
+    expect(testData2.callback.called).to.be.false;
     testData2.db.none.reject(new Error());
     expect(testData2.callback.called).to.be.true;
     expect(testData2.callback.getCall(0).args[0] instanceof Error).to.be.true;
@@ -44,6 +45,7 @@ describe('createService', () => {
 
   it('simulate database resolve event', () => {
     createService(testData3);
+    expect(testData3.callback.called).to.be.false;
     testData3.db.none.resolve({});
     expect(testData3.callback.called).to.be.true;
     expect(testData3.callback.getCall(0).args[1].statusCode).to.equal(200);
