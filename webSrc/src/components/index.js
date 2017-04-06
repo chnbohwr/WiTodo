@@ -12,6 +12,7 @@
 **/
 export Header from './Layout/Header';
 export Footer from './Layout/Footer';
+export Sidebar from './Layout/Sidebar';
 
 /**
   === Module ===

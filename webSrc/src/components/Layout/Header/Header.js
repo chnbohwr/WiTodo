@@ -4,6 +4,7 @@ import './Header.less';
 
 export default class Header extends Component {
   static propTypes = {
+    showLogout: PropTypes.bool,
     handleLogout: PropTypes.func,
   }
 
@@ -13,14 +14,19 @@ export default class Header extends Component {
   }
 
   render() {
+    const { showLogout } = this.props;
+
     return (
       <header className="header">
         <Navbar color="#000" toggleable>
           <NavbarBrand>WiTodo</NavbarBrand>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Button type="button" color="primary" onClick={this.handleLogout}>Logout</Button>
-            </NavItem>
+            {
+              showLogout &&
+              <NavItem>
+                <Button type="button" color="primary" onClick={this.handleLogout}>Logout</Button>
+              </NavItem>
+            }
           </Nav>
         </Navbar>
       </header>
