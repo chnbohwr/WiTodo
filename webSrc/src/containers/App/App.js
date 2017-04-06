@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { presets, RouteTransition } from 'react-router-transition';
 import { authActions, menuActions } from 'redux_flow/actions';
 import { Header, Footer, Sidebar } from 'components/';
@@ -9,10 +10,11 @@ import './App.less';
   state => ({
     menu: state.menu,
   }),
-  { ...authActions, ...menuActions }
+  { pushState: push, ...authActions, ...menuActions }
 )
 export default class App extends Component {
   static propTypes = {
+    pushState: PropTypes.func,
     children: PropTypes.shape({}),
     location: PropTypes.shape({}),
     logoutRequest: PropTypes.func,
@@ -27,6 +29,10 @@ export default class App extends Component {
     };
   }
 
+  redirect = (url) => {
+    this.props.pushState(url);
+  }
+
   render() {
     const { location: {pathname}, logoutRequest, menu, updateActiveItems } = this.props;
 
@@ -39,6 +45,7 @@ export default class App extends Component {
         <article className="appContent">
           <aside>
             <Sidebar
+              redirect={this.redirect}
               updateActiveItems={updateActiveItems}
               menu={menu}
             />
