@@ -12,6 +12,7 @@
 **/
 export Header from './Layout/Header';
 export Footer from './Layout/Footer';
+export Sidebar from './Layout/Sidebar';
 
 /**
   === Module ===
@@ -23,3 +24,4 @@ export Footer from './Layout/Footer';
   description: 最小的元件, 以不再包任何元素為基準
 **/
 export Button from './Element/Button';
+export Link from './Element/Link';

@@ -31,11 +31,11 @@ initialLocale(store);
 const Main = () => (
   <Provider store={store}>
     <Router key={Math.random()} history={history}>
+      <Route path="/login" component={Login} />
       <Route path="/" component={App}>
         { /* Main route */}
         <IndexRoute component={TodoList} />
         { /* Routes */}
-        <Route path="/login" component={Login} />
         <Route path="/counter" component={Home} />
         { /* Catch all route */}
         <Route path="*" component={NotFound} />
