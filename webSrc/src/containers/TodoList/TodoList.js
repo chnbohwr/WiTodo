@@ -1,69 +1,88 @@
+/**
+ * Created by Min on 2017/2/9.
+ */
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import { observer, inject } from 'mobx-react';
+import { action } from 'mobx';
 
-import { todoListActions } from 'redux_flow/actions/';
-import { Authentication } from '../../decorators';
-import QueryTodo from './components/QueryTodo';
-import AddTodo from './components/AddTodo';
-import TodoTable from './components/TodoTable';
+import './TodoList.less';
 
-@Authentication
-@connect(
-  state => ({
-    todoList: state.todoList,
-  }), {
-    ...todoListActions,
-  }
-)
+@inject(store => ({ todoStore: store.todoStore}))
+@observer
 export default class TodoList extends Component {
+
   static propTypes = {
-    todoList: PropTypes.arrayOf(PropTypes.object),
-    getTodo: PropTypes.func,
-    addTodo: PropTypes.func,
-    editTodo: PropTypes.func,
-    removeTodo: PropTypes.func,
-    changeEditStatus: PropTypes.func,
-    changeEditText: PropTypes.func,
+    // loginRequest: PropTypes.func,
+    todoStore: PropTypes.shape({
+      todoList: PropTypes.array,
+      addItem: PropTypes.func,
+      removeItem: PropTypes.func,
+      detail: PropTypes.func,
+      setDetailId: PropTypes.func
+    }),
   }
 
-  constructor() {
-    super();
-    this.state = {
-      query: '',
-    };
+  state = {
+    todoValue: '',
   }
 
-  componentDidMount() {
-    const { getTodo } = this.props;
-    getTodo();
+  onPress = (event) => {
+    if (event.key === 'Enter' && !!event.target.value) {
+      const param = {
+        text: event.target.value,
+        timeStamp: Date.now(),
+      };
+      this.setState({
+        todoValue: ''
+      }, this.props.todoStore.addItem(param));
+    }
   }
 
-  queryTodo = (query) => {
+  remove = (index) => {
+    this.props.todoStore.removeItem(index);
+  }
+
+  handleChange = (e) => {
     this.setState({
-      query
+      todoValue: e.target.value
     });
   }
 
   render() {
-    const { query } = this.state;
-    const { todoList, addTodo, editTodo, removeTodo, changeEditStatus, changeEditText } = this.props;
+    const { todoList, detail } = this.props.todoStore;
 
     return (
-      <div>
-        <QueryTodo
-          handleQueryTodo={this.queryTodo}
-        />
-        <AddTodo
-          handleAddTodo={addTodo}
-        />
-        <TodoTable
-          todos={todoList.filter(todo => todo.todo.indexOf(query) !== -1)}
-          handleEditTodo={editTodo}
-          handleChangeEditStatus={changeEditStatus}
-          handleChangeEditText={changeEditText}
-          handleRemoveTodo={removeTodo}
-        />
+      <div className="todo-container">
+        <ul>
+          <li>
+            <input
+              type="text"
+              placeholder="Please input"
+              onKeyPress={this.onPress}
+              onChange={this.handleChange}
+              value={this.state.todoValue} />
+          </li>
+          {
+            todoList.map((val, key) => (
+              <li className="list" key={val.timeStamp}>
+                {val.text}
+                <div>
+                  <button
+                    onClick={action(() => { this.props.todoStore.setDetailId = key; })}
+                   >Show Detail</button>
+                  <button
+                    onClick={() => this.remove(key)}
+                  >&times;</button>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <div className="todo-detail">
+          {detail}
+        </div>
       </div>
     );
   }
 }
+

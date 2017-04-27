@@ -1,21 +1,25 @@
+'use strict';
+
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Input, Alert } from 'reactstrap';
-import { authActions } from 'redux_flow/actions/';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { Header, Footer } from 'components/';
+import { observer, inject } from 'mobx-react';
+// import { observable, action } from 'mobx';
 import './Login.less';
 
-@connect(
-  state => ({
-    authReducer: state.auth,
-  }), {
-    ...authActions,
-  }
-)
+@inject(store => ({ authStore: store.authStore }))
+@observer
 export default class Login extends Component {
+
   static propTypes = {
-    authReducer: PropTypes.shape({}),
-    loginRequest: PropTypes.func,
+    // loginRequest: PropTypes.func,
+    authStore: PropTypes.shape({
+      login: PropTypes.func,
+      isLogin: PropTypes.bool
+    }),
+    router: PropTypes.shape({
+      push: PropTypes.func
+    })
   }
 
   constructor() {
@@ -34,25 +38,21 @@ export default class Login extends Component {
 
   handleLogin = () => {
     const { account, password } = this.state;
-    const { loginRequest } = this.props;
-    loginRequest({account, password});
+    const { authStore: {login} } = this.props;
+
+    if (login(account, password)) {
+      this.props.router.push('/todo');
+    }
   }
 
   render() {
     const { account, password } = this.state;
-    const { authReducer } = this.props;
 
     return (
       <div>
         <Header />
         <article className="appContent">
           <Form className="content">
-            {
-              authReducer.error &&
-              <Alert color="danger">
-                <strong>{authReducer.error}</strong>
-              </Alert>
-            }
             <FormGroup>
               <Input
                 type="text"
@@ -69,8 +69,7 @@ export default class Login extends Component {
                 onChange={e => this.handleChange(e, 'password')}
               />
             </FormGroup>
-            {' '}
-            <Button type="button" color="primary" onClick={this.handleLogin}>Login</Button>
+            <Button type="button" color="primary" onClick={this.handleLogin} >Login</Button>
           </Form>
         </article>
         <Footer />
