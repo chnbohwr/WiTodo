@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { observer, inject } from 'mobx-react';
-import { action } from 'mobx';
+import { observable, action } from 'mobx';
 
 import './TodoList.less';
 
@@ -12,29 +12,29 @@ import './TodoList.less';
 export default class TodoList extends Component {
 
   static propTypes = {
-    // loginRequest: PropTypes.func,
     todoStore: PropTypes.shape({
-      todoList: PropTypes.array,
+      todoList: PropTypes.shape({}),
       addItem: PropTypes.func,
       removeItem: PropTypes.func,
       detail: PropTypes.func,
-      setDetailId: PropTypes.func
+      setDetailId: PropTypes.func,
     }),
   }
 
-  state = {
-    todoValue: '',
-  }
-
-  onPress = (event) => {
-    if (event.key === 'Enter' && !!event.target.value) {
+  @action onPress = (event) => {
+    if (event.key === 'Enter' && !!this.todoValue) {
       const param = {
-        text: event.target.value,
+        text: this.todoValue,
         timeStamp: Date.now(),
       };
-      this.setState({
-        todoValue: ''
-      }, this.props.todoStore.addItem(param));
+      this.todoValue = '';
+      this.props.todoStore.addItem(param);
+    }
+  }
+
+  onSaveEdit = (event, todo) => {
+    if (event.key === 'Enter' && !!event.target.value) {
+      todo.updateText(event.target.value);
     }
   }
 
@@ -42,14 +42,10 @@ export default class TodoList extends Component {
     this.props.todoStore.removeItem(index);
   }
 
-  handleChange = (e) => {
-    this.setState({
-      todoValue: e.target.value
-    });
-  }
+  @observable todoValue = '';
 
   render() {
-    const { todoList, detail } = this.props.todoStore;
+    const { todoList, detail, setDetailId } = this.props.todoStore;
 
     return (
       <div className="todo-container">
@@ -59,21 +55,31 @@ export default class TodoList extends Component {
               type="text"
               placeholder="Please input"
               onKeyPress={this.onPress}
-              onChange={this.handleChange}
-              value={this.state.todoValue} />
+              onChange={action((e) => { this.todoValue = e.target.value; })}
+              value={this.todoValue} />
           </li>
           {
-            todoList.map((val, key) => (
-              <li className="list" key={val.timeStamp}>
-                {val.text}
-                <div>
-                  <button
-                    onClick={action(() => { this.props.todoStore.setDetailId = key; })}
-                   >Show Detail</button>
-                  <button
-                    onClick={() => this.remove(key)}
-                  >&times;</button>
-                </div>
+            todoList.map((todo, key) => (
+              <li className="list" key={todo.timeStamp}>
+                {
+                  !todo.isEditMode
+                  ? todo.text
+                  : <input onKeyPress={e => this.onSaveEdit(e, todo)} defaultValue={todo.text} />
+                }
+                {
+                  !todo.isEditMode &&
+                  <div>
+                    <button
+                      onClick={todo.edit}
+                    >Edit</button>
+                    <button
+                      onClick={() => setDetailId(key)}
+                    >Detail</button>
+                    <button
+                      onClick={todo.destroy}
+                    >&times;</button>
+                  </div>
+                }
               </li>
             ))
           }

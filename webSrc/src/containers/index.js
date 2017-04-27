@@ -13,7 +13,7 @@ import { Provider } from 'mobx-react';
 import { Router, Route, hashHistory} from 'react-router';
 import TodoList from './TodoList';
 import Login from './Login';
-import store from '../store/';
+import store from '../stores/';
 
 // add router key to fix this issue
 // https://github.com/reactjs/react-router-redux/issues/179#issuecomment-275576250

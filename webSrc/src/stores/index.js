@@ -1,6 +1,6 @@
 import { useStrict } from 'mobx';
-import authStore from './authStore';
-import todoStore from './todoStore';
+import authStore from './AuthStore';
+import todoStore from './TodoStore';
 
 useStrict(true);
 
